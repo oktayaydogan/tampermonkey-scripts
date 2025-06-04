@@ -21,10 +21,9 @@
     function analyzeTasks() {
         let issueBody = qs('[data-testid="markdown-body"]');
 
-        let checkboxes = Array.from(qsa("input[type=checkbox]", issueBody));
-
-        let totalCount = checkboxes.length;
-        let tickedCount = checkboxes.filter((cb) => cb.checked).length;
+        let allCheckboxes = Array.from(qsa("input[type=checkbox]", issueBody));
+        let totalCount = allCheckboxes.length;
+        let tickedCount = allCheckboxes.filter((cb) => cb.checked).length;
         let untickedCount = totalCount - tickedCount;
 
         let headerStateEl = qs('[data-testid="header-state"]');
