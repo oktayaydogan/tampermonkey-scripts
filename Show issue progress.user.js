@@ -27,6 +27,9 @@
         let tickedCount = checkboxes.filter((cb) => cb.checked).length;
         let untickedCount = totalCount - tickedCount;
 
+        let headerStateEl = qs('[data-testid="header-state"]');
+        headerStateEl.parentElement.classList.add("header-state-container");
+
         let progressEl = htmlFromString(`
             <div class="progress-badge">
                 <div class="task-counts">
@@ -39,9 +42,7 @@
                 <div>tasks</div>
             </div>
         `)[0];
-
-        let headerEl = qs('[data-testid="header-state"]');
-        headerEl.after(progressEl);
+        headerStateEl.after(progressEl);
 
         document.head.append(
             htmlFromString(`
