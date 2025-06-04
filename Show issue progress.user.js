@@ -30,8 +30,22 @@
         let headerStateEl = qs('[data-testid="header-state"]');
         headerStateEl.parentElement.classList.add("header-state-container");
 
+        document.head.append(
+            htmlFromString(`
+                <style>
+                    .header-state-container {
+                        display: flex;
+                        align-items: center;
+                        width: 100%;
+                    }
+                </style>
+            `)[0]
+        );
+
+        let progressBadgeEl = null;
+
         badge: {
-            let progressBadgeEl = htmlFromString(`
+            progressBadgeEl = htmlFromString(`
                 <div class="issue-progress-badge">
                     <div class="task-counts">
                         <div class="done-count">${tickedCount}</div>
@@ -75,6 +89,35 @@
                         }
                         .issue-progress-badge .task-counts .total-count {
                             color: hsl(240deg 50% 40%);
+                        }
+                    </style>
+                `)[0]
+            );
+        }
+
+        bar: {
+            let progressPercent = totalCount > 0 ? (tickedCount / totalCount) * 100 : 0;
+            progressPercent = progressPercent.toFixed(0);
+            let progressBarEl = htmlFromString(`
+                <div class="issue-progress-bar-container">
+                    <progress class="issue-progress-bar" max="${totalCount}" value="${tickedCount}"></progress>
+                    <span>%${progressPercent}</span>
+                </div>
+            `)[0];
+            progressBadgeEl.after(progressBarEl);
+            document.head.append(
+                htmlFromString(`
+                    <style>
+                        .issue-progress-bar-container {
+                            display: inline-flex;
+                            margin-left: 1rem;
+                            flex-grow: 1;
+                            margin-right: 320px;
+                            align-items: center;
+                            gap: 0.5rem;
+                        }
+                        .issue-progress-bar-container progress {
+                            width: 100%;
                         }
                     </style>
                 `)[0]
