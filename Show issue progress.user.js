@@ -15,10 +15,10 @@
     // #region ==================== APP
 
     window.addEventListener("load", function () {
-        analyzeTasks();
+        showProgress();
     });
 
-    function analyzeTasks() {
+    function showProgress() {
         let issueBody = qs('[data-testid="markdown-body"]');
 
         let allCheckboxes = Array.from(qsa("input[type=checkbox]", issueBody));
