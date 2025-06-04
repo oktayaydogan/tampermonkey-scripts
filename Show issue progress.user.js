@@ -19,17 +19,9 @@
     });
 
     function showProgress() {
-        let issueBody = qs('[data-testid="markdown-body"]');
-
-        let allCheckboxes = Array.from(qsa("input[type=checkbox]", issueBody));
-        let totalCount = allCheckboxes.length;
-        let tickedCount = allCheckboxes.filter((cb) => cb.checked).length;
-        let untickedCount = totalCount - tickedCount;
-
         let headerStateEl = qs('[data-testid="header-state"]');
         let headerStateContainer = headerStateEl.parentElement;
         headerStateContainer.classList.add("header-state-container");
-
         document.head.append(
             htmlFromString(`
                 <style>
@@ -41,6 +33,12 @@
                 </style>
             `)[0]
         );
+
+        let issueBody = qs('[data-testid="markdown-body"]');
+        let allCheckboxes = Array.from(qsa("input[type=checkbox]", issueBody));
+        let totalCount = allCheckboxes.length;
+        let tickedCount = allCheckboxes.filter((cb) => cb.checked).length;
+        let untickedCount = totalCount - tickedCount;
 
         badge: {
             let progressBadgeEl = htmlFromString(`
@@ -56,7 +54,6 @@
                 </div>
             `)[0];
             headerStateContainer.append(progressBadgeEl);
-
             document.head.append(
                 htmlFromString(`
                     <style>
