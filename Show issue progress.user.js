@@ -27,7 +27,8 @@
         let untickedCount = totalCount - tickedCount;
 
         let headerStateEl = qs('[data-testid="header-state"]');
-        headerStateEl.parentElement.classList.add("header-state-container");
+        let headerStateContainer = headerStateEl.parentElement;
+        headerStateContainer.classList.add("header-state-container");
 
         document.head.append(
             htmlFromString(`
@@ -41,10 +42,8 @@
             `)[0]
         );
 
-        let progressBadgeEl = null;
-
         badge: {
-            progressBadgeEl = htmlFromString(`
+            let progressBadgeEl = htmlFromString(`
                 <div class="issue-progress-badge">
                     <div class="task-counts">
                         <div class="done-count">${tickedCount}</div>
@@ -56,7 +55,7 @@
                     <div>tasks</div>
                 </div>
             `)[0];
-            headerStateEl.after(progressBadgeEl);
+            headerStateContainer.append(progressBadgeEl);
 
             document.head.append(
                 htmlFromString(`
@@ -103,7 +102,7 @@
                     <span>%${progressPercent}</span>
                 </div>
             `)[0];
-            progressBadgeEl.after(progressBarEl);
+            headerStateContainer.append(progressBarEl);
             document.head.append(
                 htmlFromString(`
                     <style>
