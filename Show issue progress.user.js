@@ -30,54 +30,56 @@
         let headerStateEl = qs('[data-testid="header-state"]');
         headerStateEl.parentElement.classList.add("header-state-container");
 
-        let progressEl = htmlFromString(`
-            <div class="progress-badge">
-                <div class="task-counts">
-                    <div class="done-count">${tickedCount}</div>
-                    <div class="task-count-separator">/</div>
-                    <div class="undone-count">${untickedCount}</div>
-                    <div class="task-count-separator">/</div>
-                    <div class="total-count">${totalCount}</div>
+        badge: {
+            let progressBadgeEl = htmlFromString(`
+                <div class="issue-progress-badge">
+                    <div class="task-counts">
+                        <div class="done-count">${tickedCount}</div>
+                        <div class="task-count-separator">/</div>
+                        <div class="undone-count">${untickedCount}</div>
+                        <div class="task-count-separator">/</div>
+                        <div class="total-count">${totalCount}</div>
+                    </div>
+                    <div>tasks</div>
                 </div>
-                <div>tasks</div>
-            </div>
-        `)[0];
-        headerStateEl.after(progressEl);
+            `)[0];
+            headerStateEl.after(progressBadgeEl);
 
-        document.head.append(
-            htmlFromString(`
-                <style>
-                    .progress-badge {
-                        display: inline-flex;
-                        align-items: center;
-                        gap: 0.3rem;
-                        border-radius: 1rem;
-                        border: 1px solid hsl(0deg 0% 0% / 20%);
-                        padding: 0.1rem 0.7rem;
-                        margin-left: 1rem;
-                        color: hsl(0deg 0% 0% / 60%);
-                        vertical-align: 2px;
-                    }
-                    .progress-badge .task-counts {
-                        display: flex;
-                        align-items: center;
-                    }
-                    .progress-badge .task-counts .task-count-separator {
-                        margin-inline: 0.2rem;
-                        color: hsl(0deg 0% 0% / 40%);
-                    }
-                    .progress-badge .task-counts .done-count {
-                        color: hsl(120deg 70% 30%);
-                    }
-                    .progress-badge .task-counts .undone-count {
-                        color: hsl(0deg 80% 40%);
-                    }
-                    .progress-badge .task-counts .total-count {
-                        color: hsl(240deg 50% 40%);
-                    }
-                </style>
-            `)[0]
-        );
+            document.head.append(
+                htmlFromString(`
+                    <style>
+                        .issue-progress-badge {
+                            display: inline-flex;
+                            align-items: center;
+                            gap: 0.3rem;
+                            border-radius: 1rem;
+                            border: 1px solid hsl(0deg 0% 0% / 20%);
+                            padding: 0.1rem 0.7rem;
+                            margin-left: 1rem;
+                            color: hsl(0deg 0% 0% / 60%);
+                            vertical-align: 2px;
+                        }
+                        .issue-progress-badge .task-counts {
+                            display: flex;
+                            align-items: center;
+                        }
+                        .issue-progress-badge .task-counts .task-count-separator {
+                            margin-inline: 0.2rem;
+                            color: hsl(0deg 0% 0% / 40%);
+                        }
+                        .issue-progress-badge .task-counts .done-count {
+                            color: hsl(120deg 70% 30%);
+                        }
+                        .issue-progress-badge .task-counts .undone-count {
+                            color: hsl(0deg 80% 40%);
+                        }
+                        .issue-progress-badge .task-counts .total-count {
+                            color: hsl(240deg 50% 40%);
+                        }
+                    </style>
+                `)[0]
+            );
+        }
     }
 
     // #endregion
