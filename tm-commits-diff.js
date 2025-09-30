@@ -45,9 +45,9 @@ function changeUI() {
     commitsListEl = document.querySelector(".js-diffbar-range-list");
     suffixCommitPagingToTitle();
     let newCommitsListEl = addCommitsListAside();
-    let links = newCommitsListEl.querySelectorAll("a.select-menu-item");
-    for (const link of links) {
-        link.addEventListener("click", () => {
+    let commitLinks = newCommitsListEl.querySelectorAll("a.select-menu-item");
+    for (const commitLink of commitLinks) {
+        commitLink.addEventListener("click", () => {
             setTimeout(() => {
                 changeUI();
             }, 3000);
