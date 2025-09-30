@@ -12,7 +12,7 @@
 (function () {
     "use strict";
     let loaded = false;
-    let commitsList = null;
+    let commitsListEl = null;
     window.addEventListener("load", function () {
         if (loaded) return;
         loaded = true;
@@ -42,10 +42,10 @@ function main() {
 }
 
 function changeUI() {
-    commitsList = document.querySelector(".js-diffbar-range-list");
+    commitsListEl = document.querySelector(".js-diffbar-range-list");
     suffixCommitPagingToTitle();
-    let newCommitsList = addCommitsListAside();
-    let links = newCommitsList.querySelectorAll("a.select-menu-item");
+    let newCommitsListEl = addCommitsListAside();
+    let links = newCommitsListEl.querySelectorAll("a.select-menu-item");
     for (const link of links) {
         link.addEventListener("click", () => {
             setTimeout(() => {
@@ -72,14 +72,14 @@ function getElementByXpath(path) {
 // #region ==================== FUNCS
 
 function getCurrentCommitIndex() {
-    let currentCommitItem = commitsList.querySelector(".in-range");
-    let commits = Array.from(commitsList.children);
+    let currentCommitItem = commitsListEl.querySelector(".in-range");
+    let commits = Array.from(commitsListEl.children);
     let currentIndex = commits.indexOf(currentCommitItem);
     return currentIndex;
 }
 
 function getCurrentCommitPaging() {
-    let commitsCount = commitsList.childElementCount;
+    let commitsCount = commitsListEl.childElementCount;
     let currentIndex = getCurrentCommitIndex();
     let currentPaging = `${currentIndex + 1} / ${commitsCount}`;
     return currentPaging;
@@ -112,12 +112,12 @@ function addCommitsListAside() {
             }
         `;
     newContainer.append(style);
-    let newCommitsList = commitsList.cloneNode(true);
+    let newCommitsListEl = commitsListEl.cloneNode(true);
     applyStyles(newContainer, {
         display: "flex",
         gap: "2rem",
     });
-    applyStyles(newCommitsList, {
+    applyStyles(newCommitsListEl, {
         maxHeight: "70vh",
         overflowY: "auto",
         minWidth: "450px",
@@ -126,9 +126,9 @@ function addCommitsListAside() {
         border: "1px solid silver",
         borderRadius: "6px",
     });
-    newContainer.prepend(newCommitsList);
-    let commits = Array.from(newCommitsList.children);
-    for (const el of Array.from(newCommitsList.children)) {
+    newContainer.prepend(newCommitsListEl);
+    let commits = Array.from(newCommitsListEl.children);
+    for (const el of Array.from(newCommitsListEl.children)) {
         applyStyles(el, {
             display: "flex",
             gap: "0.5rem",
@@ -157,9 +157,9 @@ function addCommitsListAside() {
     }
 
     let currentCommitIndex = getCurrentCommitIndex();
-    newCommitsList.children[currentCommitIndex].classList.add("current-commit");
+    newCommitsListEl.children[currentCommitIndex].classList.add("current-commit");
     setTimeout(() => {
-        newCommitsList.children[currentCommitIndex].scrollIntoView({ block: "center" });
+        newCommitsListEl.children[currentCommitIndex].scrollIntoView({ block: "center" });
     });
 
     let filesEl = document.querySelector("#files");
@@ -167,7 +167,7 @@ function addCommitsListAside() {
 
     newContainer.append(filesEl);
 
-    return newCommitsList;
+    return newCommitsListEl;
 }
 
 // #endregion
