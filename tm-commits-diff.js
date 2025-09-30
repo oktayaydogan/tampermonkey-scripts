@@ -16,16 +16,16 @@
     window.addEventListener("load", function () {
         if (loaded) return;
         loaded = true;
-        main();
+        changeUI();
     });
     setTimeout(() => {
         if (loaded) return;
         loaded = true;
-        main();
+        changeUI();
     }, 5000);
 })();
 
-function main() {
+function changeUI() {
     commitsList = document.querySelector(".js-diffbar-range-list");
 
     let prevCommitButton = document.querySelector("a[id*=prev-commit]");
