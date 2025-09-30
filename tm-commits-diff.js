@@ -69,7 +69,7 @@ function getElementByXpath(path) {
 
 // #endregion
 
-// #region ==================== FUNCS
+// #region ==================== FUNCS: PAGING
 
 function getCurrentCommitIndex() {
     let currentCommitItem = commitsListEl.querySelector(".in-range");
@@ -90,10 +90,14 @@ function suffixCommitPagingToTitle() {
     let commitTitle = commitTitleEl.textContent.trim();
     let commitPaging = getCurrentCommitPaging();
     commitTitleEl.innerHTML = `
-            <span>${commitTitle}</span>
-            <span style="margin-left: 1rem; opacity: 0.5">(${commitPaging})</span>
-        `;
+        <span>${commitTitle}</span>
+        <span style="margin-left: 1rem; opacity: 0.5">(${commitPaging})</span>
+    `;
 }
+
+// #endregion
+
+// #region ==================== FUNCS
 
 function addCommitsListAside() {
     let newContainer = document.createElement("div");
