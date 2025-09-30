@@ -16,21 +16,18 @@
     window.addEventListener("load", function () {
         if (loaded) return;
         loaded = true;
-        changeUI();
+        main();
     });
     setTimeout(() => {
         if (loaded) return;
         loaded = true;
-        changeUI();
+        main();
     }, 5000);
 })();
 
-function changeUI() {
-    commitsList = document.querySelector(".js-diffbar-range-list");
-
+function main() {
     let prevCommitButton = document.querySelector("a[id*=prev-commit]");
     let nextCommitButton = document.querySelector("a[id*=next-commit]");
-
     prevCommitButton?.addEventListener("click", () => {
         setTimeout(() => {
             changeUI();
@@ -41,7 +38,11 @@ function changeUI() {
             changeUI();
         }, 3000);
     });
+    changeUI();
+}
 
+function changeUI() {
+    commitsList = document.querySelector(".js-diffbar-range-list");
     suffixCommitPagingToTitle();
     let newCommitsList = addCommitsListAside();
     let links = newCommitsList.querySelectorAll("a.select-menu-item");
