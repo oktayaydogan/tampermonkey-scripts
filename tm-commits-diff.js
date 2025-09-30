@@ -102,25 +102,27 @@ function suffixCommitPagingToTitle() {
 function addCommitsListAside() {
     let newContainer = document.createElement("div");
     newContainer.id = "commits-list-aside";
-    let style = document.createElement("style");
-    style.textContent = `
-            #commits-list-aside .current-commit {
-                background-color: hsla(212, 92.10%, 44.50%, 0.25);
-            }
-            #commits-list-aside .select-menu-item.current-commit:hover {
-                background-color: var(--bgColor-accent-emphasis, var(--color-accent-emphasis));;
-            }
-            #commits-list-aside .select-menu-item:hover .text-emphasized,
-            #commits-list-aside .select-menu-item:focus .text-emphasized {
-                color: white !important;
-            }
-        `;
-    newContainer.append(style);
-    let newCommitsListEl = commitsListEl.cloneNode(true);
     applyStyles(newContainer, {
         display: "flex",
         gap: "2rem",
     });
+
+    let style = document.createElement("style");
+    style.textContent = `
+        #commits-list-aside .current-commit {
+            background-color: hsla(212, 92.10%, 44.50%, 0.25);
+        }
+        #commits-list-aside .select-menu-item.current-commit:hover {
+            background-color: var(--bgColor-accent-emphasis, var(--color-accent-emphasis));;
+        }
+        #commits-list-aside .select-menu-item:hover .text-emphasized,
+        #commits-list-aside .select-menu-item:focus .text-emphasized {
+            color: white !important;
+        }
+    `;
+    newContainer.append(style);
+
+    let newCommitsListEl = commitsListEl.cloneNode(true);
     applyStyles(newCommitsListEl, {
         maxHeight: "70vh",
         overflowY: "auto",
@@ -131,6 +133,7 @@ function addCommitsListAside() {
         borderRadius: "6px",
     });
     newContainer.prepend(newCommitsListEl);
+
     let commits = Array.from(newCommitsListEl.children);
     for (const el of Array.from(newCommitsListEl.children)) {
         applyStyles(el, {
