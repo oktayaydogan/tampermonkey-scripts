@@ -1,0 +1,147 @@
+(function () {
+    // #region ==================== UTILS
+
+    function applyStyles(el, styles) {
+        for (let style in styles) {
+            el.style[style] = styles[style];
+        }
+    }
+
+    // #endregion
+
+    // #region ==================== FUNCS
+
+    function getCurrentCommitIndex() {
+        let currentCommitItem = commitsList.querySelector(".in-range");
+        let commits = Array.from(commitsList.children);
+        let currentIndex = commits.indexOf(currentCommitItem);
+        return currentIndex;
+    }
+
+    function getCurrentCommitPaging() {
+        let commitsCount = commitsList.childElementCount;
+        let currentIndex = getCurrentCommitIndex();
+        let currentPaging = `${currentIndex + 1} / ${commitsCount}`;
+        return currentPaging;
+    }
+
+    function suffixCommitPagingToTitle() {
+        let commitTitleEl = document.querySelector(".commit-title");
+        let commitTitle = commitTitleEl.textContent.trim();
+        let commitPaging = getCurrentCommitPaging();
+        commitTitleEl.innerHTML = `
+            <span>${commitTitle}</span>
+            <span style="margin-left: 1rem; opacity: 0.5">(${commitPaging})</span>
+        `;
+    }
+
+    function addCommitsListAside() {
+        let newContainer = document.createElement("div");
+        newContainer.id = "commits-list-aside";
+        let style = document.createElement("style");
+        style.textContent = `
+            #commits-list-aside .current-commit {
+                background-color: hsla(212, 92.10%, 44.50%, 0.25);
+            }
+            #commits-list-aside .select-menu-item.current-commit:hover {
+                background-color: var(--bgColor-accent-emphasis, var(--color-accent-emphasis));;
+            }
+            #commits-list-aside .select-menu-item:hover .text-emphasized,
+            #commits-list-aside .select-menu-item:focus .text-emphasized {
+                color: white !important;
+            }
+        `;
+        newContainer.append(style);
+        let newCommitsList = commitsList.cloneNode(true);
+        applyStyles(newContainer, {
+            display: "flex",
+            gap: "2rem",
+        });
+        applyStyles(newCommitsList, {
+            maxHeight: "70vh",
+            overflowY: "auto",
+            minWidth: "450px",
+            position: "sticky",
+            top: "80px",
+            border: "1px solid silver",
+            borderRadius: "6px",
+        });
+        newContainer.prepend(newCommitsList);
+        let commits = Array.from(newCommitsList.children);
+        for (const el of Array.from(newCommitsList.children)) {
+            applyStyles(el, {
+                display: "flex",
+                gap: "0.5rem",
+                paddingLeft: "8px",
+            });
+            applyStyles(el.children[0], {
+                display: "flex",
+                flexDirection: "column",
+                position: "relative",
+                flexGrow: "1",
+                maxWidth: "calc(100% - 33px)",
+            });
+            applyStyles(el.children[0].children[0], {
+                position: "absolute",
+                right: "0",
+            });
+            applyStyles(el.children[0].children[1], {
+                marginRight: "50px",
+            });
+            let commitIndex = document.createElement("span");
+            commitIndex.textContent = commits.indexOf(el) + 1;
+            applyStyles(commitIndex, {
+                minWidth: "25px",
+            });
+            el.prepend(commitIndex);
+        }
+
+        let currentCommitIndex = getCurrentCommitIndex();
+        newCommitsList.children[currentCommitIndex].classList.add("current-commit");
+        setTimeout(() => {
+            newCommitsList.children[currentCommitIndex].scrollIntoView({ block: "center" });
+        });
+
+        let filesEl = document.querySelector("#files");
+        filesEl.previousElementSibling.after(newContainer);
+
+        newContainer.append(filesEl);
+
+        return newCommitsList;
+    }
+
+    // #endregion
+
+    let commitsList = null;
+
+    function changeUI() {
+        commitsList = document.querySelector(".js-diffbar-range-list");
+
+        let prevCommitButton = document.querySelector("a[id*=prev-commit]");
+        let nextCommitButton = document.querySelector("a[id*=next-commit]");
+
+        prevCommitButton.addEventListener("click", () => {
+            setTimeout(() => {
+                changeUI();
+            }, 3000);
+        });
+        nextCommitButton.addEventListener("click", () => {
+            setTimeout(() => {
+                changeUI();
+            }, 3000);
+        });
+
+        suffixCommitPagingToTitle();
+        let newCommitsList = addCommitsListAside();
+        let links = newCommitsList.querySelectorAll("a.select-menu-item");
+        for (const link of links) {
+            link.addEventListener("click", () => {
+                setTimeout(() => {
+                    changeUI();
+                }, 3000);
+            });
+        }
+    }
+
+    changeUI();
+})();
