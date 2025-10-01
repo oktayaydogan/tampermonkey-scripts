@@ -27,6 +27,14 @@
 // #region ==================== MAIN
 
 function main() {
+    improveUI();
+}
+
+// #endregion
+
+// #region ==================== IMPROVE UI
+
+function improveUI() {
     let hasMultipleFiles = false;
     let diffLayoutEl = document.querySelector("#diff-layout-component");
     hasMultipleFiles = Boolean(diffLayoutEl);
