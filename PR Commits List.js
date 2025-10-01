@@ -70,7 +70,7 @@ function main() {
             color: black;
         }
         #commits-aside-container .in-range .description {
-            color: black;
+            color: inherit;
         }
         #commits-aside-container .select-menu-item:hover {
             background-color: var(--bgColor-accent-emphasis, var(--color-accent-emphasis));
@@ -79,11 +79,27 @@ function main() {
         #commits-aside-container .select-menu-item:hover * {
             color: inherit;
         }
+        #commits-aside-container .select-menu-item:focus * {
+            color: inherit;
+        }
         #commits-aside-container details-menu {
             width: 400px;
         }
         #commits-aside-container .select-menu-item {
             padding-left: 1rem;
+        }
+        #commits-aside-container .select-menu-item-text {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        #commits-aside-container .select-menu-item-text code {
+            position: absolute;
+            right: 0;
+            top: 3px;
+        }
+        #commits-aside-container .select-menu-item-text div {
+            margin-right: 50px;
         }
     `;
     asideContainer.append(style);
