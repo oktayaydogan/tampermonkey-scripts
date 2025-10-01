@@ -59,6 +59,28 @@ function main() {
     detailsMenuElClone.classList.remove("position-absolute", "select-menu-modal");
     detailsMenuElClone.style.zIndex = "0";
     asideContainer.prepend(detailsMenuElClone);
+
+    let style = document.createElement("style");
+    style.textContent = `
+        #commits-aside-container .select-menu-list {
+            max-height: 60vh;
+        }
+        #commits-aside-container .in-range {
+            background-color: hsl(200deg 100% 93%);
+            color: black;
+        }
+        #commits-aside-container .in-range .description {
+            color: black;
+        }
+        #commits-aside-container .select-menu-item:hover {
+            background-color: var(--bgColor-accent-emphasis, var(--color-accent-emphasis));
+            color: white;
+        }
+        #commits-aside-container .select-menu-item:hover * {
+            color: inherit;
+        }
+    `;
+    asideContainer.append(style);
 }
 
 // #endregion
