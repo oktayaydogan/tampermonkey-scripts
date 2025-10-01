@@ -24,6 +24,8 @@
     }, 5000);
 })();
 
+// #region ==================== MAIN
+
 function main() {
     let hasMultipleFiles = false;
     let diffLayoutEl = document.querySelector("#diff-layout-component");
@@ -59,6 +61,12 @@ function main() {
     asideContainer.prepend(detailsMenuElClone);
 }
 
+// #endregion
+
+// #region ==================== UTILS
+
 function getElementByXpath(path) {
     return document.evaluate(path, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
 }
+
+// #endregion
