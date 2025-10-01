@@ -26,29 +26,29 @@
 
 function main() {
     let hasMultipleFiles = false;
-
     let diffLayoutEl = document.querySelector("#diff-layout-component");
-
     hasMultipleFiles = Boolean(diffLayoutEl);
 
-    let container = document.createElement("div");
-    container.style.display = "flex";
-    container.style.gap = "10px";
-    container.style.flexDirection = "row";
+    let asideContainer = document.createElement("div");
+    asideContainer.id = "commits-aside-container";
+    asideContainer.style.display = "flex";
+    asideContainer.style.gap = "1rem";
+    asideContainer.style.flexDirection = "row";
 
     if (hasMultipleFiles) {
-        diffLayoutEl.before(container);
-        container.append(diffLayoutEl);
+        diffLayoutEl.before(asideContainer);
+        asideContainer.append(diffLayoutEl);
     } else {
         let commitTitleElXPath = `//*[@id="files_bucket"]/diff-file-filter/diff-layout/div[2]`;
         let commitTitleEl = getElementByXpath(commitTitleElXPath);
         let filesEl = document.querySelector("#files");
-        let container2 = document.createElement("div");
-        commitTitleEl.before(container2);
-        container2.append(commitTitleEl);
-        container2.append(filesEl);
-        container2.before(container);
-        container.append(container2);
+        let filesContainer = document.createElement("div");
+        filesContainer.id = "files-container";
+        commitTitleEl.before(filesContainer);
+        filesContainer.append(commitTitleEl);
+        filesContainer.append(filesEl);
+        filesContainer.before(asideContainer);
+        asideContainer.append(filesContainer);
     }
 
     let detailsMenuXPath = `//*[@id="files_bucket"]/diff-file-filter/diff-layout/div[1]/div/div[2]/div[2]/details[1]/details-menu`;
@@ -56,7 +56,7 @@ function main() {
     let detailsMenuElClone = detailsMenuEl.cloneNode(true);
     detailsMenuElClone.classList.remove("position-absolute", "select-menu-modal");
     detailsMenuElClone.style.zIndex = "0";
-    container.prepend(detailsMenuElClone);
+    asideContainer.prepend(detailsMenuElClone);
 }
 
 function getElementByXpath(path) {
