@@ -79,6 +79,12 @@ function main() {
         #commits-aside-container .select-menu-item:hover * {
             color: inherit;
         }
+        #commits-aside-container details-menu {
+            width: 400px;
+        }
+        #commits-aside-container .select-menu-item {
+            padding-left: 1rem;
+        }
     `;
     asideContainer.append(style);
 }
