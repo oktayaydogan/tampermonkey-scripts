@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         PR Commits List
+// @name         eski
 // @namespace    http://tampermonkey.net/
 // @version      2025-09-29
 // @description  try to take over the world!
@@ -94,33 +94,49 @@ function improveUI() {
 
     let style = document.createElement("style");
     style.textContent = `
+        #commits-aside-container {
+            display: flex;
+            align-items: flex-start;
+        }
         #commits-aside-container .select-menu-list {
             max-height: 60vh;
+        }
+        #commits-aside-container .in-range .description {
+            color: inherit;
+        }
+        #commits-aside-container .select-menu-item {
+            padding-left: 1rem;
+            display: flex;
+            gap: 0.5rem;
+            background-color: transparent;
         }
         #commits-aside-container .in-range {
             background-color: hsl(200deg 100% 93%);
             color: black;
-        }
-        #commits-aside-container .in-range .description {
-            color: inherit;
         }
         #commits-aside-container .select-menu-item:hover {
             background-color: var(--bgColor-accent-emphasis, var(--color-accent-emphasis));
             color: white;
         }
         #commits-aside-container .select-menu-item:hover * {
-            color: inherit;
+            color: white;
         }
         #commits-aside-container .select-menu-item:focus * {
-            color: inherit;
+            color: black;
+        }
+        #commits-aside-container .select-menu-item:hover:focus * {
+            color: white;
         }
         #commits-aside-container details-menu {
             width: 400px;
+            border: 1px solid silver;
+            border-color: var(--borderColor-default, var(--color-border-default));
+            border-radius: var(--borderRadius-medium);
         }
-        #commits-aside-container .select-menu-item {
-            padding-left: 1rem;
-            display: flex;
-            gap: 0.5rem;
+        #commits-aside-container details-menu .select-menu-header {
+            background: var(--bgColor-muted, var(--color-canvas-subtle));
+            border-top-left-radius: var(--borderRadius-medium);
+            border-top-right-radius: var(--borderRadius-medium);
         }
         #commits-aside-container .select-menu-item-text {
             display: flex;
