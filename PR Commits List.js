@@ -60,6 +60,15 @@ function main() {
     detailsMenuElClone.style.zIndex = "0";
     asideContainer.prepend(detailsMenuElClone);
 
+    let selectMenuItems = detailsMenuElClone.querySelectorAll(".js-diffbar-range-list .select-menu-item");
+    for (i = 0; i < selectMenuItems.length; i++) {
+        let selectMenuItem = selectMenuItems[i];
+        let indexEl = document.createElement("div");
+        indexEl.classList.add("commit-index");
+        indexEl.textContent = (i + 1).toString();
+        selectMenuItem.prepend(indexEl);
+    }
+
     let style = document.createElement("style");
     style.textContent = `
         #commits-aside-container .select-menu-list {
@@ -87,11 +96,14 @@ function main() {
         }
         #commits-aside-container .select-menu-item {
             padding-left: 1rem;
+            display: flex;
+            gap: 0.5rem;
         }
         #commits-aside-container .select-menu-item-text {
             display: flex;
             flex-direction: column;
             position: relative;
+            width: calc(100% - 25px);
         }
         #commits-aside-container .select-menu-item-text code {
             position: absolute;
@@ -99,7 +111,11 @@ function main() {
             top: 3px;
         }
         #commits-aside-container .select-menu-item-text div {
-            margin-right: 50px;
+            margin-right: 4rem;
+        }
+        #commits-aside-container .commit-index {
+            min-width: 20px;
+            opacity: 0.25;
         }
     `;
     asideContainer.append(style);
