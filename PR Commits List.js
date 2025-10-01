@@ -60,6 +60,7 @@ function main() {
     detailsMenuElClone.style.zIndex = "0";
     asideContainer.prepend(detailsMenuElClone);
 
+    let selectedCommitEls = [];
     let selectMenuItems = detailsMenuElClone.querySelectorAll(".js-diffbar-range-list .select-menu-item");
     for (i = 0; i < selectMenuItems.length; i++) {
         let selectMenuItem = selectMenuItems[i];
@@ -67,6 +68,15 @@ function main() {
         indexEl.classList.add("commit-index");
         indexEl.textContent = (i + 1).toString();
         selectMenuItem.prepend(indexEl);
+        if (selectMenuItem.classList.contains("in-range")) {
+            selectedCommitEls.push(selectMenuItem);
+        }
+    }
+
+    if (selectedCommitEls.length) {
+        setTimeout(() => {
+            selectedCommitEls[0].scrollIntoView({ block: "center" });
+        });
     }
 
     let style = document.createElement("style");
