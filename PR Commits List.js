@@ -79,6 +79,11 @@ function improveUI() {
         if (selectMenuItem.classList.contains("in-range")) {
             selectedCommitEls.push(selectMenuItem);
         }
+        selectMenuItem.addEventListener("click", () => {
+            setTimeout(() => {
+                improveUI();
+            }, 3000);
+        });
     }
 
     if (selectedCommitEls.length) {
