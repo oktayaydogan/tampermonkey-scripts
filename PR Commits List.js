@@ -142,7 +142,7 @@ function improveUI() {
             display: flex;
             flex-direction: column;
             position: relative;
-            width: calc(100% - 25px);
+            width: calc(100% - 33px);
         }
         #commits-aside-container .select-menu-item-text code {
             position: absolute;
