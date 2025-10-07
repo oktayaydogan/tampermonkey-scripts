@@ -114,6 +114,12 @@ function improveUI() {
             background-color: hsl(200deg 100% 93%);
             color: black;
         }
+        @media (prefers-color-scheme: dark) {
+            #commits-aside-container .in-range {
+                background-color: hsl(200deg 100% 70% / 30%);
+                color: white;
+            }
+        }
         #commits-aside-container .select-menu-item:hover {
             background-color: var(--bgColor-accent-emphasis, var(--color-accent-emphasis));
             color: white;
