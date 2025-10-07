@@ -153,7 +153,7 @@ function improveUI() {
             margin-right: 4rem;
         }
         #commits-aside-container .commit-index {
-            min-width: 20px;
+            min-width: 25px;
             opacity: 0.25;
         }
     `;
