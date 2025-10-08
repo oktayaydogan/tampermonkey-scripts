@@ -90,22 +90,22 @@
                         .issue-progress-badge .task-counts .total-count {
                             color: hsl(240deg 50% 40%);
                         }
-                        html[data-color-mode="auto"][data-dark-theme="dark"] {
+                        @media (prefers-color-scheme: dark) {
                             .issue-progress-badge {
-                                color: #b5b5b5;
-                                border: 1px solid rgba(181, 181, 181, 0.4);
+                                color: hsl(0deg 0% 100% / 70%);
+                                border: 1px solid hsl(0deg 0% 100% / 30%);
                             }
                             .issue-progress-badge .task-counts .task-count-separator {
-                                color: #93939366;
+                                color: hsl(0deg 0% 100% / 30%);
                             }
                             .issue-progress-badge .task-counts .done-count {
-                                color: #26b926;
+                                color: hsl(120deg 70% 45%);
                             }
                             .issue-progress-badge .task-counts .undone-count {
-                                color: #f53939;
+                                color: hsl(0deg 80% 60%);
                             }
                             .issue-progress-badge .task-counts .total-count {
-                                color: #4b4be3;
+                                color: hsl(240deg 100% 75%);
                             }
                         }
                     </style>
