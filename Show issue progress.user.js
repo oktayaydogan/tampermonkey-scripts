@@ -90,9 +90,20 @@
                         .issue-progress-badge .task-counts .total-count {
                             color: hsl(240deg 50% 40%);
                         }
+
                         progress.issue-progress-bar {
-                            accent-color: hsl(210deg 85% 50% / 75%) !important;
+                            appearance: none;
+                            height: 8px;
                         }
+                        progress.issue-progress-bar::-webkit-progress-bar {
+                            border-radius: 10px;
+                            overflow: hidden;
+                            background-color: hsl(0deg 0% 50% / 50%) !important;
+                        }
+                        progress.issue-progress-bar::-webkit-progress-value {
+                            background-color: hsl(210deg 85% 50% / 75%) !important;
+                        }
+
                         @media (prefers-color-scheme: dark) {
                             .issue-progress-badge {
                                 color: hsl(0deg 0% 100% / 70%);
