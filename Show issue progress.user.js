@@ -85,6 +85,38 @@
                         .issue-progress-badge .task-counts .total-count {
                             color: hsl(240deg 50% 40%);
                         }
+
+                        progress.issue-progress-bar {
+                            appearance: none;
+                            height: 8px;
+                        }
+                        progress.issue-progress-bar::-webkit-progress-bar {
+                            border-radius: 10px;
+                            overflow: hidden;
+                            background-color: hsl(0deg 0% 50% / 50%) !important;
+                        }
+                        progress.issue-progress-bar::-webkit-progress-value {
+                            background-color: hsl(210deg 85% 50% / 75%) !important;
+                        }
+
+                        @media (prefers-color-scheme: dark) {
+                            .issue-progress-badge {
+                                color: hsl(0deg 0% 100% / 70%);
+                                border: 1px solid hsl(0deg 0% 100% / 30%);
+                            }
+                            .issue-progress-badge .task-counts .task-count-separator {
+                                color: hsl(0deg 0% 100% / 30%);
+                            }
+                            .issue-progress-badge .task-counts .done-count {
+                                color: hsl(120deg 70% 45%);
+                            }
+                            .issue-progress-badge .task-counts .undone-count {
+                                color: hsl(0deg 80% 60%);
+                            }
+                            .issue-progress-badge .task-counts .total-count {
+                                color: hsl(240deg 100% 75%);
+                            }
+                        }
                     </style>
                 `)[0]
             );
