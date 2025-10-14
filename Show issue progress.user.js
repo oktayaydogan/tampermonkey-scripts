@@ -22,17 +22,11 @@
         let headerStateEl = qs('[data-testid="header-state"]');
         let headerStateContainer = headerStateEl.parentElement;
         headerStateContainer.classList.add("header-state-container");
-        document.head.append(
-            htmlFromString(`
-                <style>
-                    .header-state-container {
-                        display: flex;
-                        align-items: center;
-                        width: 100%;
-                    }
-                </style>
-            `)[0]
-        );
+
+        let newElsContainer = htmlFromString(`
+            <div style="display: flex; flex-grow: 1;"></div>
+        `)[0];
+        headerStateContainer.parentElement.append(newElsContainer);
 
         let issueBody = qs('[data-testid="markdown-body"]');
         let allCheckboxes = Array.from(qsa("input[type=checkbox]", issueBody));
@@ -53,7 +47,7 @@
                     <div>tasks</div>
                 </div>
             `)[0];
-            headerStateContainer.append(progressBadgeEl);
+            newElsContainer.append(progressBadgeEl);
             document.head.append(
                 htmlFromString(`
                     <style>
@@ -64,7 +58,6 @@
                             border-radius: 1rem;
                             border: 1px solid hsl(0deg 0% 0% / 20%);
                             padding: 0.1rem 0.7rem;
-                            margin-left: 1rem;
                             color: hsl(0deg 0% 0% / 60%);
                             vertical-align: 2px;
                         }
@@ -131,7 +124,7 @@
                     <span>%${progressPercent}</span>
                 </div>
             `)[0];
-            headerStateContainer.append(progressBarEl);
+            newElsContainer.append(progressBarEl);
             document.head.append(
                 htmlFromString(`
                     <style>
