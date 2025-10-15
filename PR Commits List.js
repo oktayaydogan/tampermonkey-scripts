@@ -70,6 +70,7 @@ function improveUI() {
 
     let selectedCommitEls = [];
     let selectMenuItems = detailsMenuElClone.querySelectorAll(".js-diffbar-range-list .select-menu-item");
+    let i = 0;
     for (i = 0; i < selectMenuItems.length; i++) {
         let selectMenuItem = selectMenuItems[i];
         let indexEl = document.createElement("div");
