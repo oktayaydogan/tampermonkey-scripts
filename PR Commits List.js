@@ -54,6 +54,7 @@ function improveUI() {
         let filesEl = document.querySelector("#files");
         let filesContainer = document.createElement("div");
         filesContainer.id = "files-container";
+        filesContainer.style = "width: 100%;"
         commitTitleEl.before(filesContainer);
         filesContainer.append(commitTitleEl);
         filesContainer.append(filesEl);
