@@ -46,6 +46,7 @@ function improveUI() {
     asideContainer.style.flexDirection = "row";
 
     if (hasMultipleFiles) {
+        diffLayoutEl.style = "width: 100%;"
         diffLayoutEl.before(asideContainer);
         asideContainer.append(diffLayoutEl);
     } else {
