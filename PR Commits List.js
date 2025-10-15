@@ -168,17 +168,11 @@ function improveUI() {
     asideContainer.append(style);
 
     events: {
-        let prevCommitButton = document.querySelector("a[id*=prev-commit]");
-        if (prevCommitButton) {
-            prevCommitButton.addEventListener("click", () => {
-                setTimeout(() => {
-                    improveUI();
-                }, 3000);
-            });
-        }
-        let nextCommitButton = document.querySelector("a[id*=next-commit]");
-        if (nextCommitButton) {
-            nextCommitButton.addEventListener("click", () => {
+        let navigationButtons = document.querySelectorAll("a[id*=prev-commit], a[id*=next-commit]");
+
+        for (i = 0; i < navigationButtons.length; i++) {
+            let navigationButton = navigationButtons[i];
+            navigationButton.addEventListener("click", () => {
                 setTimeout(() => {
                     improveUI();
                 }, 3000);
