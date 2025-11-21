@@ -46,7 +46,6 @@ function improveUI() {
     asideContainer.style.flexDirection = "row";
 
     if (hasMultipleFiles) {
-        diffLayoutEl.style = "width: 100%;"
         diffLayoutEl.before(asideContainer);
         asideContainer.append(diffLayoutEl);
     } else {
@@ -162,6 +161,9 @@ function improveUI() {
         #commits-aside-container .commit-index {
             min-width: 25px;
             opacity: 0.25;
+        }
+        #diff-layout-component {
+            width: 100%;
         }
     `;
     asideContainer.append(style);
