@@ -168,9 +168,7 @@ function improveUI() {
 
     events: {
         let navigationButtons = document.querySelectorAll("a[id*=prev-commit], a[id*=next-commit]");
-
-        for (i = 0; i < navigationButtons.length; i++) {
-            let navigationButton = navigationButtons[i];
+        for (let navigationButton of navigationButtons) {
             navigationButton.addEventListener("click", () => {
                 setTimeout(() => {
                     improveUI();
